@@ -37,7 +37,7 @@ body{
   aspect-ratio: 1 / 1;
 }
 .active{
-  animation: exist 0.4s ease-in-out;
+  animation: exist 0.4s ease-in-outs;
 }
 
 @keyframes exist {
@@ -61,7 +61,7 @@ body{
   background-color: rgb(189, 192, 0);
 }
 .n16{
-  background-color: rgb(42, 66, 42);
+  background-color: rgb(71, 0, 0);
 }
 .n32{
   background-color: rgb(243, 92, 92);
