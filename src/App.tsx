@@ -4,7 +4,39 @@ import './App.css'
 function App() {
   const [score, setScore] = useState(4);
   var first = true;
+  const active = useRef(0);
   const board = useRef([ 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+
+
+
+  var touchstartX = 0;
+  var touchstartY = 0;
+  var touchendX = 0;
+  var touchendY = 0;
+
+  // var gesuredZone = document.getElementById('gesuredZone');
+
+
+  function handleGesure() {
+      var swiped = 'swiped: ';
+      if (touchendX < touchstartX) {
+          alert(swiped + 'left!');
+      }
+      if (touchendX > touchstartX) {
+          alert(swiped + 'right!');
+      }
+      if (touchendY < touchstartY) {
+          alert(swiped + 'down!');
+      }
+      if (touchendY > touchstartY) {
+          alert(swiped + 'left!');
+      }
+      if (touchendY == touchstartY) {
+          alert('tap!');
+      }
+  }
+
+
 
   function destination(currentIndex: number, offset: number){
     let i = currentIndex;
@@ -40,46 +72,70 @@ function App() {
       index = Math.floor(Math.random() * 16)
     } while(board.current[index] !== 0)
     board.current[index] = (Math.random() < 0.25)? 4: 2;
-    console.log("random ", index);
-    console.log("board ", board.current[index]);
+    // console.log("random ", index);
+    // console.log("board ", board.current[index]);
+    return index;
 
   }
   useEffect(() => {
-    if(first)document.addEventListener("keydown",
-    (e) => {
-      let offset = 0;
-      let isHorizontal = false;
-      switch(e.key){
-        case "ArrowUp":
-          offset = -1;
-          break;
-        case "ArrowDown":
-          offset = 1;
-          break;
-        case "ArrowRight":
-          offset = 1;
-          isHorizontal = true
-          break;
-        case "ArrowLeft":
-          offset = -1;
-          isHorizontal = true;
-        }
-        if(Movement(offset, isHorizontal)){
-          generateTile();
-          setScore(prev => prev + 2);
-        }
+    if(first){
+      document.addEventListener("keydown",
+      (e) => {
+        let offset = 0;
+        let isHorizontal = false;
+        switch(e.key){
+          case "ArrowUp":
+            offset = -1;
+            break;
+          case "ArrowDown":
+            offset = 1;
+            break;
+          case "ArrowRight":
+            offset = 1;
+            isHorizontal = true
+            break;
+          case "ArrowLeft":
+            offset = -1;
+            isHorizontal = true;
+          }
+          if(Movement(offset, isHorizontal)){
+            active.current = generateTile();
+            setScore(prev => prev + 2);
+          }
       }
     )
+    document.addEventListener('swiped-left', function(e) {
+      console.log(e);
+    });
+  // swiped-right
+    document.addEventListener('swiped-right', function(e) {
+    // ...
+      console.log(e);
+    });
+    // swiped-up
+    document.addEventListener('swiped-up', function(e) {
+      // ...
+      console.log(e);
+    });
+    // swiped-down
+    document.addEventListener('swiped-down', function(e) {
+      // ...
+      console.log(e);
+    });
+
     first = false;
+    }
   }, [])
 
   return (
     <div id='board'>
       {
         board.current.map((value, index) =>{
+          let act = index === active.current? "active": '';
           return(
+            
             <div key={index} className="Cell">
-              {value !== 0 && <div key={value} className={`Slide n${value}`}>{value}</div>}
+              {value !== 0 && <div key={value} className={`Slide n${value} ${act}`}>{value}</div>}
             </div>
           )
         })

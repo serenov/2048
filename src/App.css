@@ -34,12 +34,14 @@ body{
   place-content: center;
   width: 100%;
   aspect-ratio: 1 / 1;
+}
+.active{
   animation: exist 0.2s ease;
 }
 
 @keyframes exist {
   0%{
-    scale: 0.8;
+    scale: 0.6;
   }
   100%{
     scale: 1;
