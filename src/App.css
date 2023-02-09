@@ -1,0 +1,80 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  height: 100vh;
+  width: 100vw;
+  background-color: aqua;
+  display: grid;
+  place-items: center;
+}
+
+#board{
+  background-color: rgb(150, 150, 150);
+  color: white;
+  display: grid;
+  width: 90vw;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 490px;
+  aspect-ratio: 1 / 1;
+  padding:3px;
+}
+
+.Cell{
+  aspect-ratio: 1 / 1;
+  margin: 4px;
+  background-color: rgb(82, 81, 81);
+}
+
+.Slide{
+  display: grid;
+  place-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  animation: exist 0.2s ease;
+}
+
+@keyframes exist {
+  0%{
+    scale: 0.8;
+  }
+  100%{
+    scale: 1;
+  }
+}
+.n2 {
+  background-color: blue;
+}
+.n4{
+  background-color: green;
+}
+.n8{
+  background-color: rgb(189, 192, 0);
+}
+.n16{
+  background-color: rgb(42, 66, 42);
+}
+.n32{
+  background-color: rgb(243, 92, 92);
+}
+.n64{
+  background-color: rgb(43, 19, 75);
+}
+.n128{
+  background-color: rgb(0, 44, 61);
+}
+.n256{
+  background-color: rgb(71, 99, 71);
+}
+.n512{
+  background-color: rgb(110, 67, 78);
+}
+.n1024{
+  background-color: rgb(46, 199, 148);
+}
+.n2048{
+  background-color: aqua;
+}
