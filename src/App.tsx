@@ -35,7 +35,7 @@ function App() {
     }
   }
   const checkDirection = () => {
-  const distance = 50;
+  const distance = 30;
     if(Math.abs(start.current[0] - end.current[0]) > Math.abs(start.current[1] - end.current[1])){
       if (start.current[0] - end.current[0] > distance ){
         handler("ArrowLeft");
