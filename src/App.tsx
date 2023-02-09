@@ -72,8 +72,6 @@ function App() {
       index = Math.floor(Math.random() * 16)
     } while(board.current[index] !== 0)
     board.current[index] = (Math.random() < 0.25)? 4: 2;
-    // console.log("random ", index);
-    // console.log("board ", board.current[index]);
     return index;
 
   }
@@ -104,24 +102,6 @@ function App() {
           }
       }
     )
-    document.addEventListener('swiped-left', function(e) {
-      console.log(e);
-    });
-  // swiped-right
-    document.addEventListener('swiped-right', function(e) {
-    // ...
-      console.log(e);
-    });
-    // swiped-up
-    document.addEventListener('swiped-up', function(e) {
-      // ...
-      console.log(e);
-    });
-    // swiped-down
-    document.addEventListener('swiped-down', function(e) {
-      // ...
-      console.log(e);
-    });
 
     first = false;
     }
