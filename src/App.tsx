@@ -8,8 +8,8 @@ function App() {
   const fingerCount = useRef(0);
   const end = useRef([0, 0]);
   const active = useRef(0);
-  const board = useRef([ 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-
+  const isRunning = useRef(false);
+  const board = useRef([ 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0]);
 
   const handler = (e: string) => {
     let offset = 0;
@@ -33,6 +33,7 @@ function App() {
       active.current = generateTile();
       setScore(prev => prev + 2);
     }
+    isRunning.current = false;
   }
   const checkDirection = () => {
   const distance = 30;
