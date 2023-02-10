@@ -9,7 +9,7 @@ function App() {
   const end = useRef([0, 0]);
   const active = useRef(0);
   const isRunning = useRef(false);
-  const board = useRef([2, 32, 16, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const board = useRef([2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0]);
 
   const handler = (e: string) => {
     let offset = 0;
