@@ -9,7 +9,7 @@ function App() {
   const end = useRef([0, 0]);
   const active = useRef(0);
   const isRunning = useRef(false);
-  const board = useRef([ 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0]);
+  const board = useRef([2, 32, 16, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0]);
 
   const handler = (e: string) => {
     let offset = 0;
@@ -61,7 +61,7 @@ function App() {
     while(predicate(i + offset) && board.current[i + offset] === 0){
       i += offset;
     }
-    if(board.current[i + offset] === board.current[currentIndex]) return i + offset;
+    if(predicate(i + offset)&& board.current[i + offset] === board.current[currentIndex]) return i + offset;
     else return i;
   }
   function Movement(offset: number,  isHorizontal: boolean){
