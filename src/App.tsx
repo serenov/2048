@@ -10,7 +10,7 @@ function App() {
   const fingerCount = useRef(0);
   const active = useRef(0);
   const flag = useRef(-1);
-  const board = useRef([0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0]);
+  const board = useRef([2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0]);
   const handler = (e: string) => {
     let offset = 0;
     let isHorizontal = false;
@@ -155,7 +155,7 @@ function App() {
           )
         })
       }
-      {status.current === 1 && <div onClick={refresh} className="status">You won!!! Tab to  replay.</div>}
+      {status.current === 1 && <div onClick={refresh} className="status">You won!!! Endless Mode.</div>}
       {status.current === 2 && <div onClick={refresh} className="status"> You lose!!! Tab to  replay</div>}
     </div>
   );
