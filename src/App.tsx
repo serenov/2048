@@ -3,15 +3,14 @@ import './App.css'
 
 function App() {
   const [score, setScore] = useState(4);
+  const [gameState, setGameState] =  useState(0);
   const first = useRef(true);
   const start = useRef([0, 0]);
   const fingerCount = useRef(0);
   const end = useRef([0, 0]);
   const active = useRef(0);
-  const isRunning = useRef(false);
   const flag = useRef(-1);
   const board = useRef([2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0]);
-
   const handler = (e: string) => {
     let offset = 0;
     let isHorizontal = false;
@@ -34,7 +33,6 @@ function App() {
       active.current = generateTile();
       setScore(prev => prev + 2);
     }
-    isRunning.current = false;
   }
   const checkDirection = () => {
   const distance = 30;
@@ -97,6 +95,13 @@ function App() {
     return index;
 
   }
+
+  function theEnd(){
+    for(var i = 0; i < 16; i++){
+      
+    }
+  }
+
   useEffect(() => {
     if(first.current){
       document.addEventListener("keydown", (e) => handler(e.key));
