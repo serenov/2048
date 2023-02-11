@@ -10,7 +10,7 @@ function App() {
   const fingerCount = useRef(0);
   const active = useRef(0);
   const flag = useRef(-1);
-  const board = useRef([2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0]);
+  const board = useRef([0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0]);
   const handler = (e: string) => {
     let offset = 0;
     let isHorizontal = false;
@@ -96,24 +96,29 @@ function App() {
     return index;
 
   }
+  
+  function refresh(){
+    window.location.reload();
+  }
 
   function theEnd(){
+    let status = 2;
     for(var i = 0; i < 16; i++){
       if (board.current[i] === 2048) return 1;
       if(i % 4 !== 0) {
-        if(board.current[i - 1] === 0 || board.current[i] === board.current[i - 1]) return 0;
+        if(board.current[i - 1] === 0 || board.current[i] === board.current[i - 1]) status = 0;
       }
-      else if(i % 4 !== 3){
-        if(board.current[i + 1] === 0 || board.current[i] === board.current[i + 1]) return 0;
+      if(i % 4 !== 3){
+        if(board.current[i + 1] === 0 || board.current[i] === board.current[i + 1]) status = 0;
       }
-      else if(i / 4 !== 0){
-        if(board.current[i - 4] === 0 || board.current[i] === board.current[i - 4]) return 0;
+      if(i / 4 !== 0){
+        if(board.current[i - 4] === 0 || board.current[i] === board.current[i - 4]) status = 0;
       }
-      else if(i / 4 !== 3){
-        if(board.current[i + 4] === 0 || board.current[i] === board.current[i + 4]) return 0;
+      if(i / 4 !== 3){
+        if(board.current[i + 4] === 0 || board.current[i] === board.current[i + 4]) status = 0;
       }
     }
-    return 2;
+    return status;
   }
 
   useEffect(() => {
@@ -150,8 +155,8 @@ function App() {
           )
         })
       }
-      {status.current === 1 && <div className="status">You won!!!</div>}
-      {status.current === 2 && <div className="status"> You lost!!!</div>}
+      {status.current === 1 && <div onClick={refresh} className="status">You won!!! Tab to  replay.</div>}
+      {status.current === 2 && <div onClick={refresh} className="status"> You lose!!! Tab to  replay</div>}
     </div>
   );
 }
